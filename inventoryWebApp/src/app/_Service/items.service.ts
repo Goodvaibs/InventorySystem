@@ -63,10 +63,10 @@ export class ItemsService {
 
   //get item by id
   getItemById(id:string) {
-    let data;
+    let data:Items[] = [];
     this.getItems().subscribe((itemsData:Items[]) => {
       data = itemsData.filter((items:Items) => items.id == id)
     });
-    return of(data);
+    return of(data[0]);
   }
 }

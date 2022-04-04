@@ -1,3 +1,4 @@
+import { Items } from 'src/app/Models/Items.model';
 import { ItemsService } from 'src/app/_Service/items.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
@@ -10,6 +11,7 @@ import { ActivatedRoute } from '@angular/router';
 export class ViewComponent implements OnInit {
 
   itemId:string = this.route.snapshot.params.id
+  item!: Items;
 
   constructor(
     private route: ActivatedRoute,
@@ -21,8 +23,9 @@ export class ViewComponent implements OnInit {
   }
 
   getItemsById() {
-    this.itemService.getItemById(this.itemId).subscribe(res => {
+    this.itemService.getItemById(this.itemId).subscribe((res:Items) => {
       console.log(res);
+      this.item = res
     });
   }
 

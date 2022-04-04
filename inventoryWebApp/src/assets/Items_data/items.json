@@ -6,7 +6,7 @@
       "category": "1",
       "description": "This is milk product",
       "price": 100,
-      "image": ""
+      "image": "https://dynaimage.cdn.cnn.com/cnn/q_auto,w_1100,c_fill,g_auto,h_619,ar_16:9/http%3A%2F%2Fcdn.cnn.com%2Fcnnnext%2Fdam%2Fassets%2F200623110902-cheddar-cubes.jpg"
     },
     {
       "id": 2,
@@ -14,7 +14,7 @@
       "category": "2",
       "description": "This is wheat product",
       "price": 50,
-      "image": ""
+      "image": "https://images.immediate.co.uk/production/volatile/sites/30/2020/08/easy-bread-7455dce.jpg?quality=90&webp=true&resize=440,400"
     },
     {
       "id": 3,
@@ -22,7 +22,7 @@
       "category": "3",
       "description": "This is chocolate product",
       "price": 80,
-      "image": ""
+      "image": "https://images.theconversation.com/files/229974/original/file-20180731-136679-bnupzu.png?ixlib=rb-1.1.0&q=45&auto=format&w=926&fit=clip"
     },
     {
       "id": 4,
@@ -30,7 +30,7 @@
       "category": "4",
       "description": "This is cleaning product",
       "price": 15,
-      "image": ""
+      "image": "https://cdn.aws.toolstation.com/images/141020-UK/800/29765.jpg"
     },
     {
       "id": 5,
@@ -38,7 +38,7 @@
       "category": "1",
       "description": "This is hardware product",
       "price": 100,
-      "image": ""
+      "image": "https://www.computerhope.com/jargon/m/memory-ddr4.png"
     },
     {
       "id": 6,
@@ -46,7 +46,7 @@
       "category": "1",
       "description": "This is clothes product",
       "price": 1500,
-      "image": ""
+      "image": "https://www.topgear.com/sites/default/files/images/news-article/carousel/2019/10/e0894270cae8dfaa3747892a363787ed/roadster_front_3_4_canyon.jpg?w=1784&h=1004"
     }
   ]
 

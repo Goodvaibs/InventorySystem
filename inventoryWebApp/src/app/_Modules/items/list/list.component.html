@@ -2,10 +2,10 @@
     <div class="card" *ngFor="let item of items$| async; let i=index ">
         <input type="checkbox" id="card{{i}}" class="more" aria-hidden="true">
         <div class="content">
-            <div class="front" style="background-image: url('https://images.unsplash.com/photo-1529408686214-b48b8532f72c?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=986e2dee5c1b488d877ad7ba1afaf2ec&auto=format&fit=crop&w=1350&q=80')">
+            <div class="front" style="background-image: url('{{item.image}}')">
                 <div class="inner">
                     <h2>{{item.name}}</h2>
-                    <label for="card{{i}}" class="button" aria-hidden="true">
+                    <label for="card{{i}}" class="button" aria-hidden="true" style="cursor: pointer;">
                         {{locale.VIEW_MORE}}
                     </label>
                 </div>
@@ -17,7 +17,7 @@
                     </div>
                     <div class="location">{{item.category | categoryCheck}}</div>
                     <div class="price">{{item.price | currency}}</div>
-                        <label [routerLink]="['items/view/', item.id]" for="card{{i}}" style="grid-row: 6;grid-column: 1;margin-top: 10px;" class="button return" aria-hidden="true">
+                        <label [routerLink]="['view/', item.id]" for="card{{i}}" style="grid-row: 6;grid-column: 1;margin-top: 10px;" class="button return" aria-hidden="true">
                             {{ locale.VIEW_BUTTON }}
                         </label>
                         <label for="card{{i}}" (click)="deleteItem(item.id)" style="grid-row: 6; grid-column: 3;margin-top: 10px;" class="button return" aria-hidden="true">

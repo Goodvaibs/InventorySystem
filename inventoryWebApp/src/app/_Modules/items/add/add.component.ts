@@ -5,7 +5,8 @@ import { Items } from 'src/app/Models/Items.model';
 import { ItemsService } from 'src/app/_Service/items.service';
 import { PopupServiceService } from 'src/app/_Service/popup-service.service';
 import { Category } from 'src/app/_Shared/Constants/Category';
-import { Xsscheck } from 'src/app/_Shared/Validator/xsscheck'
+import { Xsscheck } from 'src/app/_Shared/Validator/xsscheck';
+import { TextConstants } from 'src/app/_Shared/Constants/locale'
 
 @Component({
   selector: 'app-add',
@@ -14,20 +15,11 @@ import { Xsscheck } from 'src/app/_Shared/Validator/xsscheck'
 })
 export class AddComponent implements OnInit {
 
-
-  title:string = 'Add Items';
-  buttonText:string = 'Add';
+  locale = TextConstants;
   isSubmitted:boolean = false;
   isFormLoaded:boolean = false;
   itemCategory = Category;
-  defaultOption:string = 'default';
-  categoryDetails:Items = {
-    name:'',
-    category:'',
-    description:'',
-    price:0,
-    image:'',
-  }
+
   form!:FormGroup
   formItems:any;
   constructor(private fBuild:FormBuilder,
@@ -53,11 +45,11 @@ export class AddComponent implements OnInit {
   //Item form controls
   createItemsForm() {
     this.formItems = this.fBuild.group({
-      name:[this.categoryDetails.name,[Validators.required,Validators.maxLength(10)]],
-      category:[this.categoryDetails.category,Validators.required],
-      description:[this.categoryDetails.description,[Validators.required,Validators.maxLength(200)]],
-      price:[this.categoryDetails.price,Validators.required],
-      image:[this.categoryDetails.image]
+      name:['',[Validators.required,Validators.maxLength(10)]],
+      category:['',Validators.required],
+      description:['',[Validators.required,Validators.maxLength(200)]],
+      price:['',Validators.required],
+      image:['']
     }, {
       validator : Xsscheck('name')
     })
@@ -111,7 +103,15 @@ export class AddComponent implements OnInit {
 
   //Add more items
   addMoreItems() {
-    this.fItem.push(this.formItems);
+    this.fItem.push(this.fBuild.group({
+      name:['',[Validators.required,Validators.maxLength(10)]],
+      category:['',Validators.required],
+      description:['',[Validators.required,Validators.maxLength(200)]],
+      price:['',Validators.required],
+      image:['']
+    }, {
+      validator : Xsscheck('name')
+    }));
   }
 
   //Remove items from form control
