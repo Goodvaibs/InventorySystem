@@ -16,10 +16,10 @@ export class ItemsService {
   ) { }
 
 
-  //api call to get items listing 
+  //api call to get items listing
   getItems() {
     //this would be the idle api call
-    
+
     // return this.http.get<Items[]>(this.url).pipe(
     //   map((item) => {
     //     return item
@@ -37,10 +37,25 @@ export class ItemsService {
   }
 
   //api to delete the item
-  deleteItem(id: number) {
-    this.loadItems().subscribe((itemsData:Items[]) => {
+  deleteItem(id: string) {
+    this.getItems().subscribe((itemsData:Items[]) => {
       let newItems = itemsData.filter((items:Items) => items.id != id);
-      localStorage.setItem('itemsData', JSON.stringify(newItems));
-    });    
+      this.setToLocalStorage(newItems)
+    });
+  }
+
+  //set Item
+  setItem(data:Items[]){
+    this.getItems().subscribe((itemData:Items[])=>{
+      let newDataArray = [...itemData,...data]
+      this.setToLocalStorage(newDataArray)
+
+    });
+    return of(true)
+  }
+
+  //set itemsData in localstorage
+  setToLocalStorage(data:Items[]){
+    localStorage.setItem('itemsData', JSON.stringify(data));
   }
 }

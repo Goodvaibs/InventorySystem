@@ -9,10 +9,10 @@ export class PopupServiceService {
 
   constructor() { }
 
-  // 
+  //
   confirmAlertPopup() {
 
-    
+
     return Swal.fire({
       title: 'Are you sure?',
       text: 'You will not be able to recover this item!',
@@ -20,6 +20,17 @@ export class PopupServiceService {
       showCancelButton: true,
       confirmButtonText: 'Yes, delete it!',
       cancelButtonText: 'No, keep it',
+    })
+
+  }
+
+  //Items added success
+  successAlertPopup() {
+    return Swal.fire({
+      title: 'Successful!',
+      text: 'Items added!',
+      icon: 'success',
+      showCancelButton: true,
     })
 
   }

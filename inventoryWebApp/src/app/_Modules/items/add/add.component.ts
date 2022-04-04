@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, FormBuilder,Validators, FormArray } from '@angular/forms';
+import { FormGroup, FormBuilder,Validators, FormArray } from '@angular/forms';
 import { Items } from 'src/app/Models/Items.model';
+import { ItemsService } from 'src/app/_Service/items.service';
+import { PopupServiceService } from 'src/app/_Service/popup-service.service';
 import { Category } from 'src/app/_Shared/Constants/Category';
 
 @Component({
@@ -26,7 +28,7 @@ export class AddComponent implements OnInit {
   }
   form!:FormGroup
   formItems:any;
-  constructor(private fBuild:FormBuilder) {
+  constructor(private fBuild:FormBuilder,private itemService:ItemsService,private popupService:PopupServiceService) {
     this.createForm()
   }
 
@@ -62,14 +64,44 @@ export class AddComponent implements OnInit {
   get f() { return this.form.controls; }
 
   //getter for child items
-  get fItem() { 
+  get fItem() {
     return this.form.get('child_items') as FormArray
   }
 
   //Function adds or updates item
   saveItem(){
     this.isSubmitted = true;
-    return
+    //If errors then return
+    if(this.form.invalid){
+      return
+    } else {
+      console.log('Form data ',this.fItem.controls)
+      let data:Items[] = []
+      this.fItem.controls.forEach((val,ind)=>{
+        if(val){
+          let cat = Category.find((v)=>v.value === this.fItem.controls[ind].get('category')?.value)
+          let obj = {
+            id: Math.random().toString(16).slice(2),
+            name:this.fItem.controls[ind].get('name')?.value,
+            category:this.fItem.controls[ind].get('category')?.value,
+            description:this.fItem.controls[ind].get('description')?.value,
+            price:this.fItem.controls[ind].get('price')?.value,
+            image: cat?.img
+          }
+          data.push(obj)
+        }
+      })
+      console.log('DAta ',data)
+      if(data.length > 0){
+        this.itemService.setItem(data).subscribe((resp)=>{
+          if(resp){
+            this.popupService.successAlertPopup()
+          }
+        })
+
+      }
+      return
+    }
   }
 
   //Add more items
