@@ -32,3 +32,20 @@ select {
 .error-span {
     color: red;
 }
+
+.error-fields {
+    background-color: #ff000024;
+
+    ::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+        color: black !important;
+      }
+      ::-moz-placeholder { /* Firefox 19+ */
+        color: black !important;
+      }
+      :-ms-input-placeholder { /* IE 10+ */
+        color: black !important;
+      }
+      :-moz-placeholder { /* Firefox 18- */
+        color: black;
+      }
+}

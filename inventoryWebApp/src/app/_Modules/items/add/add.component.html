@@ -18,15 +18,16 @@
                   </div>
                   <div class="form-group row">
                     <div class="col-sm-6 mb-3 mb-sm-0">
-                      <input type="text" class="form-control form-control-user" placeholder="Item Name"
+                      <input appValidator [inputValue]="fItem.controls[pIndex].get('name')?.value" [submitted]="isSubmitted" type="text" class="form-control form-control-user" placeholder="Item Name"
                         formControlName="name">
                       <div class="error-span" *ngIf="isSubmitted && fItem.controls[pIndex].get('name')?.errors">
                         <div *ngIf="fItem.controls[pIndex].get('name')?.errors?.required">*Name is required</div>
                       </div>
                     </div>
                     <div class="col-sm-6">
-                      <input type="textarea" class="form-control form-control-user" placeholder="Description"
-                        formControlName="description">
+
+                      <input type="text" class="form-control form-control-user" placeholder="Description"
+                        formControlName="description" appValidator [inputValue]="fItem.controls[pIndex].get('description')?.value" [submitted]="isSubmitted">
                       <div class="error-span" *ngIf="isSubmitted && fItem.controls[pIndex].get('description')?.errors">
                         <div *ngIf="fItem.controls[pIndex].get('description')?.errors?.maxlength">*Maximum character length 200</div>
                         <div *ngIf="fItem.controls[pIndex].get('description')?.errors?.required">*Description is required</div>
@@ -35,8 +36,9 @@
                   </div>
                   <div class="form-group row">
                     <div class="col-sm-6 mb-3 mb-sm-0">
-                      <select class="form-control select-design" placeholder="Category" formControlName="category" >
-                        <option [value]="''">Select Category</option>
+
+                      <select appValidator [inputValue]="fItem.controls[pIndex].get('category')?.value" [submitted]="isSubmitted" class="form-control select-design" placeholder="Category" formControlName="category" >
+                        <option >Select Category</option>
                         <option *ngFor="let item of itemCategory" [value]="item.value">{{item.name}}
                         </option>
                       </select>
@@ -45,7 +47,7 @@
                       </div>
                     </div>
                       <div class="col-sm-6">
-                        <input type="number" class="form-control form-control-user" placeholder="Price" formControlName="price">
+                        <input type="number" appValidator [inputValue]="fItem.controls[pIndex].get('price')?.value" [submitted]="isSubmitted" class="form-control form-control-user" placeholder="Price" formControlName="price">
                         <div class="error-span" *ngIf="isSubmitted && fItem.controls[pIndex].get('price')?.errors">
                           <div *ngIf="isSubmitted && fItem.controls[pIndex].get('price')?.errors?.required">*Price is required</div>
                         </div>
