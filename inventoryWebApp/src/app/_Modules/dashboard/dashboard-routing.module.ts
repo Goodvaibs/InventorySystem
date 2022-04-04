@@ -6,6 +6,10 @@ const routes: Routes = [
     path:'',
     component:HomeComponent
   },
+  {
+    path: 'items',
+    loadChildren:()=>import('../items/items.module').then(m=>m.ItemsModule)
+  }
 ];
 
 @NgModule({
