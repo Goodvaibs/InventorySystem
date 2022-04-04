@@ -31,10 +31,10 @@ export class ListComponent implements OnInit {
   }
 
   //Delete Item
-  deleteItem() {
+  deleteItem(id:number|any) {
     this.popupService.confirmAlertPopup().then((response) => {
       if (response.isConfirmed) {
-        
+        this.itemsService.deleteItem(id);
       }
     });
   }

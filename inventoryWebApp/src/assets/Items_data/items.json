@@ -1,6 +1,7 @@
 
   [
     {
+      "id": 1,
       "name": "Cheese",
       "category": "1",
       "description": "This is milk product",
@@ -8,6 +9,7 @@
       "image": ""
     },
     {
+      "id": 2,
       "name": "Bread",
       "category": "2",
       "description": "This is wheat product",
@@ -15,6 +17,7 @@
       "image": ""
     },
     {
+      "id": 3,
       "name": "Kitkat",
       "category": "3",
       "description": "This is chocolate product",
@@ -22,6 +25,7 @@
       "image": ""
     },
     {
+      "id": 4,
       "name": "Sponge",
       "category": "4",
       "description": "This is cleaning product",
@@ -29,6 +33,7 @@
       "image": ""
     },
     {
+      "id": 5,
       "name": "Ram",
       "category": "1",
       "description": "This is hardware product",
@@ -36,6 +41,7 @@
       "image": ""
     },
     {
+      "id": 6,
       "name": "Roadster shirt",
       "category": "1",
       "description": "This is clothes product",

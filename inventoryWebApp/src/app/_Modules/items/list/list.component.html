@@ -19,27 +19,6 @@
             </div>
             <div class="back">
                 <div class="inner">
-                    <!-- <div class="info">
-                        <span>5</span>
-                        <div class="icon">
-                            <i class="fas fa-users"></i>
-                            <span>people</span>
-                        </div>
-                    </div>
-                    <div class="info">
-                        <span>4</span>
-                        <div class="icon">
-                            <i class="fas fa-door-open"></i>
-                            <span>rooms</span>
-                        </div>
-                    </div>
-                    <div class="info">
-                        <span>3</span>
-                        <div class="icon">
-                            <i class="fas fa-bed"></i>
-                            <span>beds</span>
-                        </div>
-                    </div> -->
                     <div class="description">
                         <p>{{item.description}}</p>
                     </div>
@@ -48,7 +27,7 @@
                         <label for="card{{i}}" style="grid-row: 6;grid-column: 1;margin-top: 10px;" class="button return" aria-hidden="true">
                             {{ locale.VIEW_BUTTON }}
                         </label>
-                        <label for="card{{i}}" (click)="deleteItem()" style="grid-row: 6; grid-column: 3;margin-top: 10px;" class="button return" aria-hidden="true">
+                        <label for="card{{i}}" (click)="deleteItem(item)" style="grid-row: 6; grid-column: 3;margin-top: 10px;" class="button return" aria-hidden="true">
                             {{ locale.DELETE_BUTTON }}
                         </label>
                     

@@ -37,7 +37,10 @@ export class ItemsService {
   }
 
   //api to delete the item
-  deleteItem() {
-
+  deleteItem(id: number) {
+    this.loadItems().subscribe((itemsData:Items[]) => {
+      let newItems = itemsData.filter((items:Items) => items.id != id);
+      localStorage.setItem('itemsData', JSON.stringify(newItems));
+    });    
   }
 }

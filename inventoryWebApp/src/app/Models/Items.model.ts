@@ -4,4 +4,5 @@ export class Items{
   description?:string;
   price!:number;
   image?:string;
+  id?: number;
 }
