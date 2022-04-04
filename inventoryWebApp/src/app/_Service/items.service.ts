@@ -38,10 +38,12 @@ export class ItemsService {
 
   //api to delete the item
   deleteItem(id: string) {
+    console.log(id);
     this.getItems().subscribe((itemsData:Items[]) => {
       let newItems = itemsData.filter((items:Items) => items.id != id);
       this.setToLocalStorage(newItems)
     });
+    return true;
   }
 
   //set Item
@@ -57,5 +59,14 @@ export class ItemsService {
   //set itemsData in localstorage
   setToLocalStorage(data:Items[]){
     localStorage.setItem('itemsData', JSON.stringify(data));
+  }
+
+  //get item by id
+  getItemById(id:string) {
+    let data;
+    this.getItems().subscribe((itemsData:Items[]) => {
+      data = itemsData.filter((items:Items) => items.id == id)
+    });
+    return of(data);
   }
 }

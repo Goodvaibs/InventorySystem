@@ -14,19 +14,20 @@
               <div formArrayName="child_items">
                 <div *ngFor="let item of fItem.controls; let pIndex=index" [formGroupName]="pIndex" class="items-div">
                   <div class="button-div" *ngIf="pIndex > 0">
-                    <button class="btn btn-danger btn-user btn-block">X</button>
+                    <span (click)="removeItem(pIndex)" class="btn btn-danger btn-user btn-block">X</span>
                   </div>
                   <div class="form-group row">
                     <div class="col-sm-6 mb-3 mb-sm-0">
-                      <input appValidator [inputValue]="fItem.controls[pIndex].get('name')?.value" [submitted]="isSubmitted" type="text" class="form-control form-control-user" placeholder="Item Name"
+                      <input appValidator id="form-error" [inputValue]="fItem.controls[pIndex].get('name')?.value" [submitted]="isSubmitted" type="text" class="form-control form-control-user form-error" placeholder="Item Name"
                         formControlName="name">
                       <div class="error-span" *ngIf="isSubmitted && fItem.controls[pIndex].get('name')?.errors">
                         <div *ngIf="fItem.controls[pIndex].get('name')?.errors?.required">*Name is required</div>
+                        <div *ngIf="fItem.controls[pIndex].get('name')?.errors?.xss_check">*Unsafe Text</div>
                       </div>
                     </div>
                     <div class="col-sm-6">
 
-                      <input type="text" class="form-control form-control-user" placeholder="Description"
+                      <input type="text" class="form-control form-control-user form-error" placeholder="Description"
                         formControlName="description" appValidator [inputValue]="fItem.controls[pIndex].get('description')?.value" [submitted]="isSubmitted">
                       <div class="error-span" *ngIf="isSubmitted && fItem.controls[pIndex].get('description')?.errors">
                         <div *ngIf="fItem.controls[pIndex].get('description')?.errors?.maxlength">*Maximum character length 200</div>
@@ -37,8 +38,8 @@
                   <div class="form-group row">
                     <div class="col-sm-6 mb-3 mb-sm-0">
 
-                      <select appValidator [inputValue]="fItem.controls[pIndex].get('category')?.value" [submitted]="isSubmitted" class="form-control select-design" placeholder="Category" formControlName="category" >
-                        <option >Select Category</option>
+                      <select appValidator [inputValue]="fItem.controls[pIndex].get('category')?.value" [submitted]="isSubmitted" class="form-control select-design form-error" placeholder="Category" formControlName="category" >
+                        <option value="">Select Category</option>
                         <option *ngFor="let item of itemCategory" [value]="item.value">{{item.name}}
                         </option>
                       </select>
@@ -47,7 +48,7 @@
                       </div>
                     </div>
                       <div class="col-sm-6">
-                        <input type="number" appValidator [inputValue]="fItem.controls[pIndex].get('price')?.value" [submitted]="isSubmitted" class="form-control form-control-user" placeholder="Price" formControlName="price">
+                        <input type="number" appValidator [inputValue]="fItem.controls[pIndex].get('price')?.value" [submitted]="isSubmitted" class="form-control form-control-user form-error" placeholder="Price" formControlName="price">
                         <div class="error-span" *ngIf="isSubmitted && fItem.controls[pIndex].get('price')?.errors">
                           <div *ngIf="isSubmitted && fItem.controls[pIndex].get('price')?.errors?.required">*Price is required</div>
                         </div>
@@ -58,10 +59,10 @@
               </div>
               <div class="form-group row">
                 <div class="col-sm-12">
-                  <button class="link-button" (click)="addMoreItems()">Add More Items +</button>
+                  <span class="link-button" (click)="addMoreItems()">Add More Items +</span>
                 </div>
               </div>
-              <button type="submit" class="btn btn-primary btn-user btn-block">
+              <button type="submit" appValidator [submitted]="isSubmitted" class="btn btn-primary btn-user btn-block">
                 {{buttonText}}
               </button>
             </form>

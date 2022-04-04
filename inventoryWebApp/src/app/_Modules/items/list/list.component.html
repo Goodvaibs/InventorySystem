@@ -17,10 +17,10 @@
                     </div>
                     <div class="location">{{item.category | categoryCheck}}</div>
                     <div class="price">{{item.price | currency}}</div>
-                        <label for="card{{i}}" style="grid-row: 6;grid-column: 1;margin-top: 10px;" class="button return" aria-hidden="true">
+                        <label [routerLink]="['items/view/', item.id]" for="card{{i}}" style="grid-row: 6;grid-column: 1;margin-top: 10px;" class="button return" aria-hidden="true">
                             {{ locale.VIEW_BUTTON }}
                         </label>
-                        <label for="card{{i}}" (click)="deleteItem(item)" style="grid-row: 6; grid-column: 3;margin-top: 10px;" class="button return" aria-hidden="true">
+                        <label for="card{{i}}" (click)="deleteItem(item.id)" style="grid-row: 6; grid-column: 3;margin-top: 10px;" class="button return" aria-hidden="true">
                             {{ locale.DELETE_BUTTON }}
                         </label>
                     

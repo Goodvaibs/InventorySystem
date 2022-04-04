@@ -17,12 +17,31 @@ export class ValidatorDirective {
 
   // listens on blur of the input field
   @HostListener('blur')
+  @HostListener('keyup')
   checkValidation() {
-    //check if the input field is empty
-    if((this.inputValue == '' || this.inputValue == null || this.inputValue == undefined)) {
-      this.renderer.addClass(this.elemRef.nativeElement, 'error-fields');
-    } else {
-      this.renderer.removeChild(this.elemRef.nativeElement, 'error-fields');
+    // if button is clicked then do not add the class
+    if(!this.elemRef.nativeElement.classList.contains('btn')) {
+      if((this.inputValue == '' || this.inputValue == null || this.inputValue == undefined) && this.submitted ) {
+        this.renderer.addClass(this.elemRef.nativeElement, 'error-fields');
+      } else {
+        this.renderer.removeClass(this.elemRef.nativeElement, 'error-fields');
+      }
+    }
+  }
+
+
+  //Check on form submit
+  @HostListener('click')
+  onSubmit() {
+    //if button is clicked check all the fields and add class
+    if(this.elemRef.nativeElement.classList.contains('btn')) {
+      let el = document.getElementsByClassName('form-error');
+      for(let i=0; i<el.length; i++) {
+        let check = el[i].getAttribute('ng-reflect-input-value')
+        if(check === '' || check === null) {
+          el[i].className += " error-fields";
+        }
+      }
     }
   }
 }

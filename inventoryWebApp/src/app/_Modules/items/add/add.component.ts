@@ -1,9 +1,11 @@
+import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder,Validators, FormArray } from '@angular/forms';
 import { Items } from 'src/app/Models/Items.model';
 import { ItemsService } from 'src/app/_Service/items.service';
 import { PopupServiceService } from 'src/app/_Service/popup-service.service';
 import { Category } from 'src/app/_Shared/Constants/Category';
+import { Xsscheck } from 'src/app/_Shared/Validator/xsscheck'
 
 @Component({
   selector: 'app-add',
@@ -28,16 +30,16 @@ export class AddComponent implements OnInit {
   }
   form!:FormGroup
   formItems:any;
-  constructor(private fBuild:FormBuilder,private itemService:ItemsService,private popupService:PopupServiceService) {
+  constructor(private fBuild:FormBuilder,
+    private itemService:ItemsService,
+    private popupService:PopupServiceService,
+    private router: Router) {
     this.createForm()
   }
 
 
   ngOnInit(): void {
   }
-
-  addAdmin(){}
-
 
   //Build form group controls
   createForm(){
@@ -56,6 +58,8 @@ export class AddComponent implements OnInit {
       description:[this.categoryDetails.description,[Validators.required,Validators.maxLength(200)]],
       price:[this.categoryDetails.price,Validators.required],
       image:[this.categoryDetails.image]
+    }, {
+      validator : Xsscheck('name')
     })
     return this.fBuild.array([this.formItems])
   }
@@ -95,7 +99,8 @@ export class AddComponent implements OnInit {
       if(data.length > 0){
         this.itemService.setItem(data).subscribe((resp)=>{
           if(resp){
-            this.popupService.successAlertPopup()
+            this.popupService.successAlertPopup();
+            this.router.navigate(['/']);
           }
         })
 
@@ -107,5 +112,10 @@ export class AddComponent implements OnInit {
   //Add more items
   addMoreItems() {
     this.fItem.push(this.formItems);
+  }
+
+  //Remove items from form control
+  removeItem(index:number ) {
+    this.fItem.removeAt(index)
   }
 }

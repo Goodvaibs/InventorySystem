@@ -9,7 +9,6 @@ import { Observable } from 'rxjs';
   selector: 'app-list',
   templateUrl: './list.component.html',
   styleUrls: ['./list.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ListComponent implements OnInit {
 
@@ -35,6 +34,7 @@ export class ListComponent implements OnInit {
     this.popupService.confirmAlertPopup().then((response) => {
       if (response.isConfirmed) {
         this.itemsService.deleteItem(id);
+        this.getItemList();
       }
     });
   }
