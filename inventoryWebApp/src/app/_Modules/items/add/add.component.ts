@@ -55,4 +55,9 @@ export class AddComponent implements OnInit {
   addItem(){
 
   }
+
+  //Add more items
+  addMoreItems() {
+
+  }
 }

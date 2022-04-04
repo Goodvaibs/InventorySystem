@@ -1,17 +1,10 @@
-<div class="wrapper" *ngIf="items$">
+<div class="wrapper" *ngIf="items$; else noItems">
     <div class="card" *ngFor="let item of items$| async; let i=index ">
         <input type="checkbox" id="card{{i}}" class="more" aria-hidden="true">
         <div class="content">
             <div class="front" style="background-image: url('https://images.unsplash.com/photo-1529408686214-b48b8532f72c?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=986e2dee5c1b488d877ad7ba1afaf2ec&auto=format&fit=crop&w=1350&q=80')">
                 <div class="inner">
                     <h2>{{item.name}}</h2>
-                    <div class="rating">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="far fa-star"></i>
-                    </div>
                     <label for="card{{i}}" class="button" aria-hidden="true">
                         {{locale.VIEW_MORE}}
                     </label>
@@ -37,3 +30,11 @@
         </div>
     </div>
 </div>
+
+<!-- If not items are available -->
+<ng-template #noItems>
+    <div class="wrapper noItems" >
+        <p>{{locale.NO_ITEMS}}</p>
+        <button [routerLink]="['items/add']">{{locale.ADD_BUTTON}}</button>
+    </div>
+</ng-template>

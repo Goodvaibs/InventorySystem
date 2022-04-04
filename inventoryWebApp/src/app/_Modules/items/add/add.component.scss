@@ -1,0 +1,10 @@
+.link-button {
+    border: none;
+    background: transparent;
+    font-weight: 700;
+    color: #4545ac;
+
+    &:hover {
+        color: rgb(107, 101, 101);
+    }
+}
