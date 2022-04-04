@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, FormBuilder,Validators } from '@angular/forms';
 import { Items } from 'src/app/Models/Items.model';
+import { Category } from 'src/app/_Shared/Constants/Category';
 
 @Component({
   selector: 'app-add',
@@ -9,44 +10,12 @@ import { Items } from 'src/app/Models/Items.model';
 })
 export class AddComponent implements OnInit {
 
-<<<<<<< Updated upstream
-  title:string = 'Add Items'
-  buttonText:string = 'Add'
-  isSubmitted = false;
-  f:any
-  adminId:any
-  gender:any
-  adminDetails:any
-  form:any
-  isLoaded = false
-  constructor() { }
-=======
+
   title:string = 'Add Items';
   buttonText:string = 'Add';
   isSubmitted:boolean = false;
   isFormLoaded:boolean = false;
-  itemCategory = [
-    {
-      name:'Packing food',
-      value:'1'
-    },
-    {
-      name:'Raw materials',
-      value:'2'
-    },
-    {
-      name:'Cleaning tools',
-      value:'3'
-    },
-    {
-      name:'Computer parts',
-      value:'4'
-    },
-    {
-      name:'Clothes',
-      value:'5'
-    }
-  ]
+  itemCategory = Category;
   categoryDetails:Items = {
     name:'',
     category:'',
@@ -58,15 +27,14 @@ export class AddComponent implements OnInit {
   constructor(private fBuild:FormBuilder) {
     this.createForm()
   }
->>>>>>> Stashed changes
+
 
   ngOnInit(): void {
   }
 
-<<<<<<< Updated upstream
   addAdmin(){}
 
-=======
+
   //Build form group controls
   createForm(){
     this.form = this.fBuild.group({
@@ -87,5 +55,4 @@ export class AddComponent implements OnInit {
   addItem(){
 
   }
->>>>>>> Stashed changes
 }

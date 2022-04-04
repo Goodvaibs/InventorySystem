@@ -22,7 +22,7 @@
                 <div class="col-sm-6">
                   <input type="text" class="form-control form-control-user" placeholder="Description"
                     formControlName="description">
-                  <div class="error-span" *ngIf="isSubmitted && f.lastname.errors">
+                  <div class="error-span" *ngIf="isSubmitted && f.description.errors">
                     <div *ngIf="f.description.errors.maxlength">*Maximum character length 200</div>
                   </div>
                 </div>

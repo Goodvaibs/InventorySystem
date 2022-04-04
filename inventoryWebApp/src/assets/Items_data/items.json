@@ -1,0 +1,46 @@
+
+  [
+    {
+      "name": "Cheese",
+      "category": "1",
+      "description": "This is milk product",
+      "price": 100,
+      "image": ""
+    },
+    {
+      "name": "Bread",
+      "category": "2",
+      "description": "This is wheat product",
+      "price": 50,
+      "image": ""
+    },
+    {
+      "name": "Kitkat",
+      "category": "3",
+      "description": "This is chocolate product",
+      "price": 80,
+      "image": ""
+    },
+    {
+      "name": "Sponge",
+      "category": "4",
+      "description": "This is cleaning product",
+      "price": 15,
+      "image": ""
+    },
+    {
+      "name": "Ram",
+      "category": "1",
+      "description": "This is hardware product",
+      "price": 100,
+      "image": ""
+    },
+    {
+      "name": "Roadster shirt",
+      "category": "1",
+      "description": "This is clothes product",
+      "price": 1500,
+      "image": ""
+    }
+  ]
+
