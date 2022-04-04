@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, FormBuilder,Validators } from '@angular/forms';
+import { FormControl, FormGroup, FormBuilder,Validators, FormArray } from '@angular/forms';
 import { Items } from 'src/app/Models/Items.model';
 import { Category } from 'src/app/_Shared/Constants/Category';
 
@@ -16,6 +16,7 @@ export class AddComponent implements OnInit {
   isSubmitted:boolean = false;
   isFormLoaded:boolean = false;
   itemCategory = Category;
+  defaultOption:string = 'default';
   categoryDetails:Items = {
     name:'',
     category:'',
@@ -24,6 +25,7 @@ export class AddComponent implements OnInit {
     image:'',
   }
   form!:FormGroup
+  formItems:any;
   constructor(private fBuild:FormBuilder) {
     this.createForm()
   }
@@ -38,26 +40,40 @@ export class AddComponent implements OnInit {
   //Build form group controls
   createForm(){
     this.form = this.fBuild.group({
-      name:[this.categoryDetails.name,[Validators.required,Validators.maxLength(10)]],
-      category:[this.categoryDetails.category,Validators.required],
-      description:[this.categoryDetails.description,Validators.maxLength(200)],
-      price:[this.categoryDetails.price,Validators.required],
-      image:[this.categoryDetails.image]
+      child_items : this.createItemsForm()
     })
 
     this.isFormLoaded = true;
   }
 
+  //Item form controls
+  createItemsForm() {
+    this.formItems = this.fBuild.group({
+      name:[this.categoryDetails.name,[Validators.required,Validators.maxLength(10)]],
+      category:[this.categoryDetails.category,Validators.required],
+      description:[this.categoryDetails.description,[Validators.required,Validators.maxLength(200)]],
+      price:[this.categoryDetails.price,Validators.required],
+      image:[this.categoryDetails.image]
+    })
+    return this.fBuild.array([this.formItems])
+  }
+
   // getter for easy access to form fields
   get f() { return this.form.controls; }
 
-  //Function adds or updates item
-  addItem(){
+  //getter for child items
+  get fItem() { 
+    return this.form.get('child_items') as FormArray
+  }
 
+  //Function adds or updates item
+  saveItem(){
+    this.isSubmitted = true;
+    return
   }
 
   //Add more items
   addMoreItems() {
-
+    this.fItem.push(this.formItems);
   }
 }

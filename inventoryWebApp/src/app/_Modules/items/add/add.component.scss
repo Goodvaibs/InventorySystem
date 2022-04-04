@@ -8,3 +8,27 @@
         color: rgb(107, 101, 101);
     }
 }
+
+.items-div {
+    // border: 3px solid #262020;
+    margin-bottom: 40px;
+    border-radius: 15px;
+    padding: 10px;
+    .button-div {
+        display: flex;
+        justify-content: end;
+        margin-bottom: 15px;
+        button {
+            width: max-content;
+        }
+    }
+}
+
+select {
+    border-radius: 10rem;
+    padding: 1.5rem 1rem;
+}
+
+.error-span {
+    color: red;
+}
