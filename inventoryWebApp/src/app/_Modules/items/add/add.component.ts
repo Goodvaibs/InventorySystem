@@ -9,9 +9,19 @@ import { FormGroup, FormBuilder, Validator } from '@angular/forms';
 export class AddComponent implements OnInit {
 
   title:string = 'Add Items'
+  buttonText:string = 'Add'
+  isSubmitted = false;
+  f:any
+  adminId:any
+  gender:any
+  adminDetails:any
+  form:any
+  isLoaded = false
   constructor() { }
 
   ngOnInit(): void {
   }
+
+  addAdmin(){}
 
 }

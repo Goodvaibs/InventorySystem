@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
+import { TextConstants } from 'src/app/_Shared/Constants/locale'
+
 @Component({
   selector: 'app-list',
   templateUrl: './list.component.html',
@@ -7,7 +9,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ListComponent implements OnInit {
 
-  constructor() { }
+  locale = TextConstants;
+
+  abc = [1,2,3,4,5]
+  constructor(
+  ) { }
 
   ngOnInit(): void {
   }

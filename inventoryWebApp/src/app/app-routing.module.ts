@@ -4,6 +4,12 @@ import { HeaderComponent } from './_Shared/Components/header/header.component'
 
 const routes: Routes = [
   {
+    path: '',
+    component: HeaderComponent,
+    loadChildren:()=> import('./_Modules/items/items.module').then(m=>m.ItemsModule)
+
+  },
+  {
     path:'',
     component:HeaderComponent,
     loadChildren:()=> import('./_Modules/dashboard/dashboard.module').then(m=>m.DashboardModule)
