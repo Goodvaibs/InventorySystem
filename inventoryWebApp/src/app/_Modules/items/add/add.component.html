@@ -2,7 +2,7 @@
 <div class="container-fluid">
 
   <!-- Page Heading -->
-  <h1 class="h3 mb-2 text-gray-800">{{locale.ADD_ITEM}}</h1>
+  <h1 class="h3 mb-2 text-gray-800">{{(itemId) ? locale.EDIT_ITEM :locale.ADD_ITEM}}</h1>
 
   <div class="card o-hidden border-0 shadow-lg my-5">
     <div class="card-body p-0">
@@ -58,12 +58,12 @@
                 </div>
               </div>
               <div class="form-group row">
-                <div class="col-sm-12">
+                <div class="col-sm-12" *ngIf="!itemId">
                   <span class="link-button" (click)="addMoreItems()">{{locale.ADD_MORE}} +</span>
                 </div>
               </div>
               <button type="submit" appValidator [submitted]="isSubmitted" class="btn btn-primary btn-user btn-block">
-                {{locale.ADD_BUTTON}}
+                {{(itemId) ? locale.EDIT_ITEM :locale.ADD_ITEM}}
               </button>
             </form>
           </div>

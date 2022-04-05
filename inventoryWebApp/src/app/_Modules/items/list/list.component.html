@@ -20,6 +20,9 @@
                         <label [routerLink]="['view/', item.id]" for="card{{i}}" style="grid-row: 6;grid-column: 1;margin-top: 10px;" class="button return" aria-hidden="true">
                             {{ locale.VIEW_BUTTON }}
                         </label>
+                        <label [routerLink]="['edit/', item.id]" for="card{{i}}" style="grid-row: 6;grid-column: 2;margin-top: 10px;" class="button return" aria-hidden="true">
+                            {{ locale.EDIT_BUTTON }}
+                        </label>
                         <label for="card{{i}}" (click)="deleteItem(item.id)" style="grid-row: 6; grid-column: 3;margin-top: 10px;" class="button return" aria-hidden="true">
                             {{ locale.DELETE_BUTTON }}
                         </label>

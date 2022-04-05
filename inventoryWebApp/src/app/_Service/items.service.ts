@@ -47,12 +47,26 @@ export class ItemsService {
   }
 
   //set Item
-  setItem(data:Items[]){
-    this.getItems().subscribe((itemData:Items[])=>{
-      let newDataArray = [...itemData,...data]
-      this.setToLocalStorage(newDataArray)
+  setItem(data:Items[], action:string){
+    var newDataArr;
+    if(action == 'edit')  {
+      this.getItems().subscribe((itemsData:Items[]) => {
+        newDataArr = itemsData.map((items:Items) => {
+          if(items.id == data[0].id) {
+            items = data[0]
+          }
+          return items
+        })
+      });
+      localStorage.setItem('itemsData', JSON.stringify(newDataArr));
 
-    });
+    } else {
+      this.getItems().subscribe((itemData:Items[])=>{
+        let newDataArray = [...itemData,...data]
+        this.setToLocalStorage(newDataArray)
+  
+      });
+    }
     return of(true)
   }
 

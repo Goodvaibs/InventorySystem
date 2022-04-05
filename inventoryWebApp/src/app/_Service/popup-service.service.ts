@@ -25,10 +25,10 @@ export class PopupServiceService {
   }
 
   //Items added success
-  successAlertPopup() {
+  successAlertPopup(message:string) {
     return Swal.fire({
       title: 'Successful!',
-      text: 'Items added!',
+      text: message,
       icon: 'success',
       showCancelButton: true,
     })

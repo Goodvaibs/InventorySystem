@@ -2,11 +2,12 @@ export const TextConstants = {
 
     //buttons
     ADD_BUTTON : 'Add Item',
-    EDIT_BUTTON : 'Edit Item',
+    EDIT_BUTTON : 'Edit',
     VIEW_BUTTON : 'View',
     DELETE_BUTTON : 'Delete',
     VIEW_MORE: 'More',
     ADD_MORE: 'Add More Items',
+    EDIT_ITEM: 'Edit Item',
 
     //Titles
     ADD_ITEM: 'Add Item',

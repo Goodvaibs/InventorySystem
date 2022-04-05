@@ -1,4 +1,4 @@
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder,Validators, FormArray } from '@angular/forms';
 import { Items } from 'src/app/Models/Items.model';
@@ -20,17 +20,28 @@ export class AddComponent implements OnInit {
   isFormLoaded:boolean = false;
   itemCategory = Category;
 
+  itemId:string = this.route.snapshot.params.id
+  itemDetails!:Items;
+  action:string = 'add';
+
   form!:FormGroup
   formItems:any;
   constructor(private fBuild:FormBuilder,
     private itemService:ItemsService,
     private popupService:PopupServiceService,
-    private router: Router) {
-    this.createForm()
+    private router: Router,
+    private route: ActivatedRoute) {
+    
   }
 
 
   ngOnInit(): void {
+    if(this.itemId) {
+      this.getItem(this.itemId);
+      this.action = 'edit';
+    } else {
+      this.createForm()
+    }
   }
 
   //Build form group controls
@@ -45,11 +56,11 @@ export class AddComponent implements OnInit {
   //Item form controls
   createItemsForm() {
     this.formItems = this.fBuild.group({
-      name:['',[Validators.required,Validators.maxLength(10)]],
-      category:['',Validators.required],
-      description:['',[Validators.required,Validators.maxLength(200)]],
-      price:['',Validators.required],
-      image:['']
+      name:[(this.itemDetails)? this.itemDetails.name: '',[Validators.required,Validators.maxLength(10)]],
+      category:[(this.itemDetails)? this.itemDetails.category: '',Validators.required],
+      description:[(this.itemDetails)? this.itemDetails.description: '',[Validators.required,Validators.maxLength(200)]],
+      price:[(this.itemDetails)? this.itemDetails.price: '',Validators.required],
+      image:[(this.itemDetails)? this.itemDetails.image: '']
     }, {
       validator : Xsscheck('name')
     })
@@ -77,7 +88,7 @@ export class AddComponent implements OnInit {
         if(val){
           let cat = Category.find((v)=>v.value === this.fItem.controls[ind].get('category')?.value)
           let obj = {
-            id: Math.random().toString(16).slice(2),
+            id: (this.itemId) ? this.itemId : Math.random().toString(16).slice(2),
             name:this.fItem.controls[ind].get('name')?.value,
             category:this.fItem.controls[ind].get('category')?.value,
             description:this.fItem.controls[ind].get('description')?.value,
@@ -89,9 +100,10 @@ export class AddComponent implements OnInit {
       })
       console.log('DAta ',data)
       if(data.length > 0){
-        this.itemService.setItem(data).subscribe((resp)=>{
+        this.itemService.setItem(data, this.action).subscribe((resp)=>{
           if(resp){
-            this.popupService.successAlertPopup();
+            let message = (this.itemId) ? 'Item Updated' : 'Item Added';
+            this.popupService.successAlertPopup(message);
             this.router.navigate(['/']);
           }
         })
@@ -117,5 +129,15 @@ export class AddComponent implements OnInit {
   //Remove items from form control
   removeItem(index:number ) {
     this.fItem.removeAt(index)
+  }
+
+  //get item details for edit
+  getItem(id:string) {
+    this.itemService.getItemById(id).subscribe((res:Items) => {
+      this.itemDetails = res
+      console.log(this.itemDetails)
+      //loading form after getting the data
+      this.createForm();
+    });
   }
 }
