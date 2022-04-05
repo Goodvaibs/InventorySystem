@@ -10,6 +10,7 @@ import { ValidatorDirective } from './Directives/validator.directive';
 
 const pipes:any[] = [CategoryCheckPipe]
 const directives:any[] = [ValidatorDirective]
+const components:any[] = [HeaderComponent,SidebarComponent,FooterComponent]
 
 @NgModule({
   declarations: [
@@ -23,6 +24,6 @@ const directives:any[] = [ValidatorDirective]
     CommonModule,
     SharedRoutingModule
   ],
-  exports: [...pipes, ...directives]
+  exports: [...pipes, ...directives, ...components]
 })
 export class SharedModule { }

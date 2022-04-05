@@ -1,6 +1,11 @@
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { AddComponent } from './add.component';
+import { RouterTestingModule } from "@angular/router/testing";
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ItemsService } from 'src/app/_Service/items.service';
+import { PopupServiceService } from 'src/app/_Service/popup-service.service';
 
 describe('AddComponent', () => {
   let component: AddComponent;
@@ -8,7 +13,10 @@ describe('AddComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ AddComponent ]
+      declarations: [ AddComponent ],
+      imports: [RouterTestingModule,  ReactiveFormsModule,
+        FormsModule, HttpClientTestingModule],
+        providers: [ItemsService, PopupServiceService]
     })
     .compileComponents();
   });
