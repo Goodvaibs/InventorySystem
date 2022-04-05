@@ -31,7 +31,7 @@ export class AddComponent implements OnInit {
     private popupService:PopupServiceService,
     private router: Router,
     private route: ActivatedRoute) {
-    
+
   }
 
 
@@ -82,7 +82,7 @@ export class AddComponent implements OnInit {
     if(this.form.invalid){
       return
     } else {
-      console.log('Form data ',this.fItem.controls)
+      //console.log('Form data ',this.fItem.controls)
       let data:Items[] = []
       this.fItem.controls.forEach((val,ind)=>{
         if(val){

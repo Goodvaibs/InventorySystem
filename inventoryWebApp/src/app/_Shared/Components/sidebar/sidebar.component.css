@@ -4,3 +4,21 @@
 .downArrow{
   float: right;
 }
+
+@media (max-width:768px) {
+  .itemMenu{
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+  }
+  .sidebar-brand{
+    flex-wrap: wrap;
+  }
+  .sidebar-brand-text{
+    font-size: 10px !important;
+    display: block !important;
+  }
+  .sidebar .sidebar-brand .sidebar-brand-icon i{
+    font-size: 1rem;
+  }
+}
