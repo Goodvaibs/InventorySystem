@@ -1,0 +1,6 @@
+.sidebar .nav-item .nav-link[data-toggle=collapse]::after {
+  content: '';
+}
+.downArrow{
+  float: right;
+}
